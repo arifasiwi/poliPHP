@@ -14,12 +14,14 @@
 
     <?php include 'includes/jumbotron.php'; ?>
     
-    <div class="grid-x" id="content">
-      <div class="medium-8 cell">
-        <?php include 'content.php'; ?>
-      </div>
-      <div class="medium-4 cell">
-        <?php include 'includes/sidebar.php'; ?>
+    <div class="grid-container fluid">
+      <div class="grid-x grid-margin-x" id="content">
+        <div class="medium-8 cell">
+          <?php include 'content.php'; ?>
+        </div>
+        <div class="medium-4 cell">
+          <?php include 'includes/sidebar.php'; ?>
+        </div>
       </div>
     </div>
 

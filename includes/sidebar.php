@@ -1,7 +1,7 @@
     <div data-sticky-container>
         <div class="sticky" data-sticky data-anchor="content">
-          <h4>Categories</h4>
-          <ul>
+          <h4>MENU</h4>
+          <ul  class="vertical menu">
               <li><a href="?module=home" aria-label="Home">Home</a></li>
               <li><a href="?module=poli" aria-label="Poli">Poli</a></li>
               <li><a href="?module=pasien" aria-label="Pasien">Pasien</a></li>

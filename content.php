@@ -8,6 +8,9 @@ switch($module) {
     case 'poli':
         include 'modules/poli/poli-index.php';
     break;
+    case 'poli-edit':
+        include 'modules/poli/poli-edit.php';
+    break;
     case 'pasien':
         include 'modules/pasien/pasien-index.php';
     break;  
