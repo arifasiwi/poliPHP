@@ -1,43 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>CRUD</title>
-</head>
-<body align="center">
-    <h1 p align="center"> LIST POLI  </h1>
-	<a href="add.php" class="menu">TAMBAH DATA</a>
-	<br>
-	<br>
-	<form action="" method="POST">
-	<table border="1" cellspacing="0" cellpadding="4" align="center">
-	<tr align="center">
-		<th>Kode Poli</th>
-		<th>Nama Poli</th>
-		<th>Aksi</th>
-	</tr>
-	<?php
-		require_once("database.php");
-		$db=new Database();
-		$db->select('poli', 'id, kode, nama');
-		$res=$db->getResult();
-		if(count($res) == 0){
-			echo "<b>Tidak ada data yang tersedia</b>";
-		}else{
-			foreach ($res as &$r) {
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="css/foundation.css">
+  </head>
+  <body>
+    
+    <!-- Start Top Bar -->
+    <?php include 'includes/navbar.php'; ?>
+    <!-- End Top Bar -->
 
-			echo "<tr style='text-align:center'>";?>
-				<td><?php echo $r['kode'] ?></td>
-				<td><?php echo $r['nama'] ?></td>
-				<td>
-					<a href="edit.php?id=<?php echo $r['id']; ?>">Edit</a> ||
-					<a href="delete.php?id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")'>Hapus</a>
-				</td>
-			</tr>
-			<?php
-		}
-	}
-	?>
-</table>
-</form>
-</body>
+    <?php include 'includes/jumbotron.php'; ?>
+    
+    <div class="grid-x" id="content">
+      <div class="medium-8 cell">
+        <?php include 'content.php'; ?>
+      </div>
+      <div class="medium-4 cell">
+        <?php include 'includes/sidebar.php'; ?>
+      </div>
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
 </html>
+
+
+
