@@ -1,10 +1,10 @@
 <nav aria-label="You are here:" role="navigation">
   <ul class="breadcrumbs">
     <li><a href="?module=home">Home</a></li>
-    <li class="disabled">Data Biaya</li>
+    <li class="disabled">Data Dokter</li>
   </ul>
 </nav>
-<a href="?module=pasien-create.php" class="small button">Create</a>
+<a href="?module=dokter-create.php" class="small button">Create</a>
   <table>
       <thead>
           <tr>

@@ -4,7 +4,7 @@
     <li class="disabled">Data Biaya</li>
   </ul>
 </nav>
-<a href="?module=pasien-create.php" class="small button">Create</a>
+<a href="?module=biaya-create.php" class="small button">Create</a>
   <table>
       <thead>
           <tr>
@@ -24,15 +24,16 @@
       }else{
           foreach ($res as &$r){?>
           <tr>
+              <td><?php echo $r['id'] ?></td>
               <td><?php echo $r['nama'] ?></td>
               <td><?php echo $r['tarif'] ?></td>
               <td><?php echo $r['pendaftaran_id'] ?></td>
 
               <td>
                   <div class="small button-group">
-                      <a href="?module=pasien-show?id=<?php echo $r['id']; ?>" class=" button">View</a>
-                      <a href="?module=pasien-edit?id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
-                      <a href="?module=pasien-delete?id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
+                      <a href="?module=biaya-show?id=<?php echo $r['id']; ?>" class=" button">View</a>
+                      <a href="?module=biaya-edit?id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
+                      <a href="?module=biaya-delete?id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
                   </div>
               </td>
           </tr>

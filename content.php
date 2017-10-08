@@ -128,18 +128,57 @@ switch($module) {
 
     // Module Pemeriksaan
     case 'pemeriksaan':
-        include 'modules/pemeriksaan/pemeriksaan-index.php';
+    include 'modules/pemeriksaan/pemeriksaan-index.php';
     break;
+    case 'pemeriksaan-create':
+        include 'modules/pemeriksaan/pemeriksaan-create.php';
+    break;
+    case 'pemeriksaan-edit':
+        include 'modules/pemeriksaan/pemeriksaan-edit.php';
+    break;
+    case 'pemeriksaan-delete':
+        include 'modules/pemeriksaan/pemeriksaan-delete.php';
+    break;
+    case 'pemeriksaan-show':
+        include 'modules/pemeriksaan/pemeriksaan-edit.php';
+    break;  
+
     
     // Module Obat
     case 'obat':
-        include 'modules/obat/obat-index.php';
+    include 'modules/obat/obat-index.php';
+    break;
+    case 'obat-create':
+        include 'modules/obat/obat-create.php';
+    break;
+    case 'obat-edit':
+        include 'modules/obat/obat-edit.php';
+    break;
+    case 'obat-delete':
+        include 'modules/obat/obat-delete.php';
+    break;
+    case 'obat-show':
+        include 'modules/obat/obat-edit.php';
     break;  
+  
 
     // Module Resep
     case 'resep':
-        include 'modules/resep/resep-index.php';
+    include 'modules/resep/resep-index.php';
+    break;
+    case 'resep-create':
+        include 'modules/resep/resep-create.php';
+    break;
+    case 'resep-edit':
+        include 'modules/resep/resep-edit.php';
+    break;
+    case 'resep-delete':
+        include 'modules/resep/resep-delete.php';
+    break;
+    case 'resep-show':
+        include 'modules/resep/resep-edit.php';
     break;  
+  
 
     // Jika module tidak ditemukan maka di redirect ke home 
     default: include'home.php';  
