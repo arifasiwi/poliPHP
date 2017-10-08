@@ -27,6 +27,7 @@
       }else{
           foreach ($res as &$r){?>
           <tr>
+              <td><?php echo $r['id'] ?></td>
               <td><?php echo $r['nama'] ?></td>
               <td><?php echo $r['alamat'] ?></td>
               <td><?php echo $r['telp'] ?></td>

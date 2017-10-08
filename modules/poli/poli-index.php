@@ -4,7 +4,7 @@
     <li class="disabled">Data Poli</li>
   </ul>
 </nav>
-    <a href="?module=poli-create.php" class="small button">Create</a>
+    <a href="?module=poli-create" class="small button">Create</a>
 	
 <table>
     <thead>

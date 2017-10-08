@@ -5,24 +5,35 @@
   <li class="disabled">Data Poli</li>
 </ul>
 </nav>
-	<table>
-	    <tr>
-			<td>Kode Poli</td>
-			<td> : </td>
-			<td><input type="text" name="kode"></td>
-		</tr>
-		<tr>
-			<td>Nama </td>
-			<td> : </td>
-			<td><input type="text" name="nama"></td>
-		</tr>
-		<tr>
-		<td></td>
-		<td><input type="submit" name="tambah" value="Tambah">
-		<button type="reset" value="Reset">Reset</button>
-		</td>
-		</tr>
-	</table>
+<form>
+  <div class="grid-x grid-padding-x">
+    <div class="small-3 cell">
+      <label for="kode" class="text-right middle">Kode</label>
+    </div>
+    <div class="small-6 cell">
+      <input type="text" id="kode" placeholder="Kode">
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="small-3 cell">
+      <label for="nama" class="text-right middle">Nama</label>
+    </div>
+    <div class="small-6 cell">
+      <input type="text" id="nama" placeholder="Nama">
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="small-3 cell">
+      <label for="nama" class="text-right middle"></label>
+    </div>
+    <div class="small-6 cell">
+		<div class="small button-group">
+  <a class="button">Simpan</a>
+  <a class="button">Reset</a>
+  <a class="button">Kembali</a>
+</div>
+    </div>
+  </div>
 </form>
 <?php 
 require_once("database.php");
