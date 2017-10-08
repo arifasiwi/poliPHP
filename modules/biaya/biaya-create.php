@@ -2,19 +2,20 @@
 <ul class="breadcrumbs">
   <li>
     <a href="?module=poli-create?">Home</a></li>
-  <li class="disabled">Data Poli</li>
+  <li class="disabled">Data Biaya</li>
 </ul>
 </nav>
 <form>
- <!-- field kode -->
+  <!-- field id -->
   <div class="grid-x grid-padding-x">
     <div class="small-3 cell">
-      <label for="kode" class="text-right middle">Kode</label>
+      <label for="id" class="text-right middle">No</label>
     </div>
     <div class="small-6 cell">
-      <input type="text" id="kode" placeholder="Kode">
+      <input type="text" id="id" placeholder="">
     </div>
   </div>
+  
   <!-- field nama -->
   <div class="grid-x grid-padding-x">
     <div class="small-3 cell">
@@ -22,6 +23,25 @@
     </div>
     <div class="small-6 cell">
       <input type="text" id="nama" placeholder="Nama">
+    </div>
+  </div>
+
+  <!-- tarif -->
+  <div class="grid-x grid-padding-x">
+    <div class="small-3 cell">
+      <label for="tarif" class="text-right middle">Tarif</label>
+    </div>
+    <div class="small-6 cell">
+      <input type="text" id="tarif" placeholder="Tarif">
+    </div>
+  </div>
+  <!-- pendaftaran_id -->
+  <div class="grid-x grid-padding-x">
+    <div class="small-3 cell">
+      <label for="pendaftaran_id" class="text-right middle">Id Pendaftaran</label>
+    </div>
+    <div class="small-6 cell">
+      <input type="text" id="pendaftaran_id" placeholder="Id Pendaftaran">
     </div>
   </div>
   <!-- Aksi -->
@@ -38,21 +58,3 @@
     </div>
   </div>
 </form>
-<?php 
-require_once("database.php");
-if(isset($_POST['tambah'])){
-	$kode   = $_POST['kode'];
-	$nama   = $_POST['nama'];
-	$db=new Database();
-	$db->insert('poli',array('kode'=>$kode, 'nama'=>$nama));
-	$res=$db->getResult();
-
-	if($res){
-		header('location: index.php');
-	}else{
-		echo "Gagal";
-	}
-}
-?>
-</html>
-</body>

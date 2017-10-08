@@ -4,7 +4,7 @@
     <li class="disabled">Data Pasien</li>
   </ul>
 </nav>
-<a href="?module=pasien-create.php" class="small button">Create</a>
+<a href="?module=pasien-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>

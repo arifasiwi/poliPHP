@@ -4,7 +4,7 @@
     <li class="disabled">Data Dokter</li>
   </ul>
 </nav>
-<a href="?module=dokter-create.php" class="small button">Create</a>
+<a href="?module=dokter-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>
