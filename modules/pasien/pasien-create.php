@@ -2,49 +2,59 @@
 <ul class="breadcrumbs">
   <li>
     <a href="?module=pasien-create?">Home</a></li>
-  <li class="disabled">Data Pasien</li>
+  <li class="disabled">Create Data Pasien</li>
 </ul>
 </nav>
+<form action="" method="post">
 
-<form>
-  <!-- nama -->
-  <div class="grid-x grid-padding-x">
-    <div class="small-3 cell">
-      <label for="nama" class="text-right middle">Nama</label>
-    </div>
-    <div class="small-6 cell">
-      <input type="text" id="nama" placeholder="nama">
-    </div>
+<!-- field no -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="id" class="text-right middle">No</label>
   </div>
-  <!-- alamat -->
-  <div class="grid-x grid-padding-x">
-    <div class="small-3 cell">
-      <label for="alamat" class="text-right middle">Alamat</label>
-    </div>
-    <div class="small-6 cell">
-      <input type="text" id="alamat" placeholder="alamat">
-    </div>
+  <div class="small-6 cell">
+    <input type="text" name="id" placeholder="id" required>
   </div>
-  <!-- telephone -->
-  <div class="grid-x grid-padding-x">
-    <div class="small-3 cell">
-      <label for="telp" class="text-right middle">Telephone</label>
-    </div>
-    <div class="small-6 cell">
-      <input type="text" id="telp" placeholder="telp">
-    </div>
+</div>
+
+<!-- field nama -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="nama" class="text-right middle">Nama</label>
   </div>
-  <!-- tgl lahir -->
-  <div class="grid-x grid-padding-x">
-    <div class="small-3 cell">
-      <label for="tgl_lahir" class="text-right middle">Tanggal Lahir</label>
-    </div>
-    <div class="small-6 cell">
-      <input type="date" id="tgl_lahir" placeholder="tgl_lahir">
-    </div>
+  <div class="small-6 cell">
+    <input type="text" name="nama" placeholder="Nama" required>
   </div>
-  <!-- jk -->
-  <div class="grid-x grid-padding-x">
+</div>
+<!-- field alamat -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="alamat" class="text-right middle">alamat</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="text" name="alamat" placeholder="alamat" required>
+  </div>
+</div>
+<!-- field telp -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="telp" class="text-right middle">telp</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="text" name="telp" placeholder="telp" required>
+  </div>
+</div>
+<!-- field tgllahir -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="tgl_lahir" class="text-right middle">tgl_lahir</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="date" name="tgl_lahir" placeholder="tgl_lahir" required>
+  </div>
+</div>
+<!-- field jk -->
+<div class="grid-x grid-padding-x">
     <div class="small-3 cell">
       <label for="nama" class="text-right middle">Jenis Kelamin</label>
     </div>
@@ -52,49 +62,73 @@
       <input type="radio" name="jk" value="L" id="jk" required><label for="jkL">L</label>
       <input type="radio" name="jk" value="P" id="jk"><label for="jkP">P</label>
     </div>
+</div>
+
+<!-- field tglreg -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="tgl_reg" class="text-right middle">tgl_reg</label>
   </div>
-  <!-- tgl reg -->
-  <div class="grid-x grid-padding-x">
-    <div class="small-3 cell">
-      <label for="tgl_reg" class="text-right middle">Tanggal Registrasi</label>
-    </div>
-    <div class="small-6 cell">
-      <input type="date" id="tgl_reg" placeholder="tgl_reg">
-    </div>
+  <div class="small-6 cell">
+    <input type="date" name="tgl_reg" placeholder="tgl_reg" required>
   </div>
-  <!-- aksi -->
-  <div class="grid-x grid-padding-x">
-    <div class="small-3 cell">
-      <label for="nama" class="text-right middle"></label>
-    </div>
-    <div class="small-6 cell">
+</div>
+<!-- Aksi -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="nama" class="text-right middle"></label>
+  </div>
+  <div class="small-6 cell">
       <div class="small button-group">
-        <a class="button">Simpan</a>
-        <a class="button">Reset</a>
-        <a class="button">Kembali</a>
-      </div>
-    </div>
+    <button class="button" type="submit" name="submit">Simpan</button>
+    <button class="button" type="reset">Reset</button>
+    <a class="button" href='javascript:self.history.back();'>Kembali</a>
   </div>
+  </div>
+</div>
 </form>
 
-<!-- inputan -->
 <?php 
 require_once("database.php");
-if(isset($_POST['tambah'])){
-  $nama   = $_POST['nama'];
-	$alamat = $_POST['alamat'];
-	$telp   = $_POST['telp'];
-	$tgl_lahir   = $_POST['tgl_lahir'];
-	$jk   = $_POST['jk'];
-	$tgl_reg   = $_POST['tgl_reg'];
-	$db=new Database();
-	$db->insert('pasien',array('nama'=>$nama, 'alamat'=>$alamat, 'telp'=>$telp, 'tgl_lahir'=>$tgl_lahir, 'jk'=>$jk, 'tgl_reg'=>$tgl_reg));
-	$res=$db->getResult();
 
-	if($res){
-		header('location: index.php');
-	}else{
-		echo "Gagal";
-	}
+// check action submit
+if(isset($_POST['submit'])){
+$id = $_POST['id'];
+$nama = $_POST['nama'];
+$alamat = $_POST['alamat'];
+$telp = $_POST['telp'];
+$tgl_lahir = $_POST['tgl_lahir'];
+$jk = $_POST['jk'];
+$tgl_reg = $_POST['tgl_reg'];
+// validation empty
+if(empty($id) || empty($nama) || empty($alamat) || empty($telp) || empty($tgl_lahir) || empty($jk) || empty($tgl_reg)){
+  if(empty($id)){
+    echo "id harus diisi";
+  }
+  if(empty($nama)){
+    echo "Nama harus diisi";
+  }
+  if(empty($alamat)){
+    echo "alamat harus diisi";
+  }
+  if(empty($telp)){
+    echo "telp harus diisi";
+  }
+  if(empty($tgl_lahir)){
+    echo "tgl_lahir harus diisi";
+  }
+  if(empty($jk)){
+    echo "jk harus diisi";
+  }
+  if(empty($tgl_reg)){
+    echo "tglreg harus diisi";
+  }
+} else {
+  $db=new Database();
+  $db->insert('pasien',array('id'=>$id, 'nama'=>$nama, 'alamat'=>$alamat, 'telp'=>$telp, 'tgl_lahir'=>$tgl_lahir, 'jk'=>$jk));
+  $res=$db->getResult();
+  // redirect to list
+  header('Location: /poliklinik/index.php?module=pasien');
+}
 }
 ?>

@@ -1,43 +1,122 @@
+
 <nav aria-label="You are here:" role="navigation">
 <ul class="breadcrumbs">
-  <li><a href="?module=pegawai-create?">Home</a></li>
-  <li class="disabled">Data Poli</li>
+  <li>
+    <a href="?module=pegawai-create?">Home</a></li>
+  <li class="disabled">Create Data Pegawai</li>
 </ul>
 </nav>
-	<table>
-	    <tr>
-			<td>Kode Poli</td>
-			<td> : </td>
-			<td><input type="text" name="kode"></td>
-		</tr>
-		<tr>
-			<td>Nama </td>
-			<td> : </td>
-			<td><input type="text" name="nama"></td>
-		</tr>
-		<tr>
-		<td></td>
-		<td><input type="submit" name="tambah" value="Tambah">
-		<button type="reset" value="Reset">Reset</button>
-		</td>
-		</tr>
-	</table>
+<form action="" method="post">
+
+<!-- field nip -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="nip" class="text-right middle">nip</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="text" name="nip" placeholder="nip" required>
+  </div>
+</div>
+
+<!-- field nama -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="nama" class="text-right middle">Nama</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="text" name="nama" placeholder="Nama" required>
+  </div>
+</div>
+<!-- field alamat -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="alamat" class="text-right middle">alamat</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="text" name="alamat" placeholder="alamat" required>
+  </div>
+</div>
+<!-- field telp -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="telp" class="text-right middle">telp</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="text" name="telp" placeholder="telp" required>
+  </div>
+</div>
+<!-- field tgllahir -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="tgl_lahir" class="text-right middle">tgl_lahir</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="date" name="tgl_lahir" placeholder="tgl_lahir" required>
+  </div>
+</div>
+<!-- field jk -->
+<div class="grid-x grid-padding-x">
+    <div class="small-3 cell">
+      <label for="nama" class="text-right middle">Jenis Kelamin</label>
+    </div>
+    <div class="small-6 cell">
+      <input type="radio" name="jk" value="L" id="jk" required><label for="jkL">L</label>
+      <input type="radio" name="jk" value="P" id="jk"><label for="jkP">P</label>
+    </div>
+</div>
+
+<!-- Aksi -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="nama" class="text-right middle"></label>
+  </div>
+  <div class="small-6 cell">
+      <div class="small button-group">
+    <button class="button" type="submit" name="submit">Simpan</button>
+    <button class="button" type="reset">Reset</button>
+    <a class="button" href='javascript:self.history.back();'>Kembali</a>
+  </div>
+  </div>
+</div>
 </form>
+
 <?php 
 require_once("database.php");
-if(isset($_POST['tambah'])){
-	$kode   = $_POST['kode'];
-	$nama   = $_POST['nama'];
-	$db=new Database();
-	$db->insert('poli',array('kode'=>$kode, 'nama'=>$nama));
-	$res=$db->getResult();
 
-	if($res){
-		header('location: index.php');
-	}else{
-		echo "Gagal";
-	}
+// check action submit
+if(isset($_POST['submit'])){
+$nip = $_POST['nip'];
+$nama = $_POST['nama'];
+$alamat = $_POST['alamat'];
+$telp = $_POST['telp'];
+$tgl_lahir = $_POST['tgl_lahir'];
+$jk = $_POST['jk'];
+// validation empty
+if(empty($nip) || empty($nama) || empty($alamat) || empty($telp) || empty($tgl_lahir) || empty($jk)){
+  if(empty($nip)){
+    echo "nip harus diisi";
+  }
+  if(empty($nama)){
+    echo "Nama harus diisi";
+  }
+  if(empty($alamat)){
+    echo "alamat harus diisi";
+  }
+  if(empty($telp)){
+    echo "telp harus diisi";
+  }
+  if(empty($tgl_lahir)){
+    echo "tgl_lahir harus diisi";
+  }
+  if(empty($jk)){
+    echo "jk harus diisi";
+  }
+} else {
+  $db=new Database();
+  $db->insert('pegawai',array('nip'=>$nip, 'nama'=>$nama, 'alamat'=>$alamat, 'telp'=>$telp, 'tgl_lahir'=>$tgl_lahir, 'jk'=>$jk));
+  $res=$db->getResult();
+  // redirect to list
+  header('Location: /poliklinik/index.php?module=pegawai');
+}
 }
 ?>
-</html>
-</body>

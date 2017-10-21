@@ -4,11 +4,10 @@
     <li class="disabled">Data Poli</li>
   </ul>
 </nav>
-<a href="?module=pemeriksaan-create.php" class="small button">Create</a>
+<a href="?module=pemeriksaan-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>
-		      <th>No</th>
 		      <th>No Pemeriksaan</th>
 		      <th>Keluhan</th>
 		      <th>Diagnosa</th>
@@ -30,7 +29,6 @@
       }else{
           foreach ($res as &$r){?>
           <tr>
-              <td><?php echo $r['id'] ?></td>
               <td><?php echo $r['nomor'] ?></td>
               <td><?php echo $r['keluhan'] ?></td>
               <td><?php echo $r['diagnosa'] ?></td>
@@ -51,5 +49,6 @@
 <?php
                 }
             }
+        
             ?>
 </table>

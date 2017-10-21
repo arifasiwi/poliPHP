@@ -4,11 +4,10 @@
     <li class="disabled">Data Poli</li>
   </ul>
 </nav>
-<a href="?module=pendaftaran-create.php" class="small button">Create</a>
+<a href="?module=pendaftaran-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>
-		      <th>No</th>
 		      <th>No Pendaftaran</th>
 		      <th>Tanggal Daftar</th>
 		      <th>Antrian</th>
@@ -28,7 +27,6 @@
       }else{
           foreach ($res as &$r){?>
           <tr>
-              <td><?php echo $r['id'] ?></td>
               <td><?php echo $r['nomor'] ?></td>
               <td><?php echo $r['tgl'] ?></td>
               <td><?php echo $r['antrian'] ?></td>

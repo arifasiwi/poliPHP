@@ -4,11 +4,10 @@
     <li class="disabled">Jadwal</li>
   </ul>
 </nav>
-<a href="?module=jadwal-create.php" class="small button">Create</a>
+<a href="?module=jadwal-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>
-		      <th>No</th>
               <th>Kode</th>
 		      <th>Hari </th>
 		      <th>Jam mulai</th>
@@ -27,7 +26,6 @@
       }else{
           foreach ($res as &$r){?>
           <tr>
-              <td><?php echo $r['id'] ?></td>
               <td><?php echo $r['kode'] ?></td>
               <td><?php echo $r['hari'] ?></td>
               <td><?php echo $r['jam_mulai'] ?></td>

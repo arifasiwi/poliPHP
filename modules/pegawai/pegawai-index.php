@@ -1,22 +1,24 @@
 <nav aria-label="You are here:" role="navigation">
   <ul class="breadcrumbs">
     <li><a href="?module=home">Home</a></li>
-    <li class="disabled">Data Poli</li>
+    <li class="disabled">Data Pegawai</li>
   </ul>
 </nav>
-<a href="?module=pegawai-create.php" class="small button">Create</a>
-  <table>
-      <thead>
-          <tr>
-		      <th>No Pegawai</th>
-		      <th>Nama Pegawai</th>
-		      <th>Alamat Pegawai</th>
-		      <th>Telp Pegawai</th>
-		      <th>Tanggal Lahir</th>
-		      <th>Jenis Kelamin</th>
-		      <th>Aksi</th>
-	      </tr>
-          <?php
+    <a href="?module=pegawai-create" class="small button">Create</a>
+	
+<table>
+    <thead>
+        <tr>
+            <th>NIP</th>
+            <th>Nama </th>
+            <th>Alamat </th>
+            <th>Telephone </th>
+            <th>Tanggal Lahir </th>
+            <th>Jenis Kelamin </th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+<?php
     require_once("database.php");
     $db=new Database();
     $db->select('pegawai', 'id, nip, nama, alamat, telp, tgl_lahir, jk');
@@ -45,3 +47,10 @@
             }
             ?>
 </table>
+
+
+
+
+
+
+

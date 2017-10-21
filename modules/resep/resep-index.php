@@ -4,11 +4,10 @@
     <li class="disabled">Data Poli</li>
   </ul>
 </nav>
-<a href="?module=resep-create.php" class="small button">Create</a>
+<a href="?module=resep-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>
-		      <th>No</th>
 		      <th>No Resep</th>
 		      <th>Dosis</th>
 		      <th>Jumlah</th>
@@ -26,7 +25,6 @@
       }else{
           foreach ($res as &$r){?>
           <tr>
-              <td><?php echo $r['id'] ?></td>
               <td><?php echo $r['nomor'] ?></td>
               <td><?php echo $r['dosis'] ?></td>
               <td><?php echo $r['jumlah'] ?></td>

@@ -4,11 +4,10 @@
     <li class="disabled">Data Obat</li>
   </ul>
 </nav>
-<a href="?module=obat-create.php" class="small button">Create</a>
+<a href="?module=obat-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>
-		      <th>No</th>
               <th>Kode</th>
 		      <th>Nama </th>
 		      <th>Merk</th>
@@ -26,7 +25,6 @@
       }else{
           foreach ($res as &$r){?>
           <tr>
-              <td><?php echo $r['id'] ?></td>
               <td><?php echo $r['kode'] ?></td>
               <td><?php echo $r['nama'] ?></td>
               <td><?php echo $r['merk'] ?></td>

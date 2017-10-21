@@ -4,7 +4,7 @@
     <li class="disabled">Data Biaya</li>
   </ul>
 </nav>
-<a href="?module=biaya-create.php" class="small button">Create</a>
+<a href="?module=biaya-create" class="small button">Create</a>
   <table>
       <thead>
           <tr>
