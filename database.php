@@ -89,11 +89,27 @@ class Database {
 	}
 	
 	// Function to SELECT from the database
-	public function select($table, $rows = '*', $join = null, $where = null, $order = null, $limit = null){
+	// Function to SELECT from the database
+	public function select($table, $rows = '*', $join = null,$join2 = null,$join3 = null,$join4 = null, $join5 = null, $join6 = null, $where = null, $order = null, $limit = null){
 		// Create query from the variables passed to the function
 		$q = 'SELECT '.$rows.' FROM '.$table;
 		if($join != null){
 			$q .= ' JOIN '.$join;
+        }
+        if($join2 != null){
+			$q .= ' JOIN '.$join2;
+        }
+        if($join3 != null){
+			$q .= ' JOIN '.$join3;
+        }
+        if($join4 != null){
+			$q .= ' JOIN '.$join4;
+		}
+        if($join4 != null){
+			$q .= ' JOIN '.$join5;
+		}
+        if($join4 != null){
+			$q .= ' JOIN '.$join6;
 		}
         if($where != null){
         	$q .= ' WHERE '.$where;
@@ -137,7 +153,80 @@ class Database {
       		return false; // Table does not exist
     	}
     }
-	
+
+    public function selectMaxAntrian($table, $rows="*",$where){
+
+        $q = 'SELECT MAX(nomor) as maxAntrian FROM '.$table. ' WHERE '.$where;
+        // SELECT max(nomor) FROM `antrian` WHERE tgl='2017-11-19'
+         // echo $table;
+         $this->myQuery = $q; // Pass back the SQL
+         // Check to see if the table exists
+         if($this->tableExists($table)){
+             // The table exists, run the query
+             $query = $this->myconn->query($q);    
+             if($query){
+                 // If the query returns >= 1 assign the number of rows to numResults
+                 $this->numResults = $query->num_rows;
+                 // Loop through the query results by the number of rows returned
+                 for($i = 0; $i < $this->numResults; $i++){
+                     $r = $query->fetch_array();
+                     $key = array_keys($r);
+                     for($x = 0; $x < count($key); $x++){
+                         // Sanitizes keys so only alphavalues are allowed
+                         if(!is_int($key[$x])){
+                             if($query->num_rows >= 1){
+                                 $this->result[$i][$key[$x]] = $r[$key[$x]];
+                             }else{
+                                 $this->result[$i][$key[$x]] = null;
+                             }
+                         }
+                     }
+                 }
+                 return true; // Query was successful
+             }else{
+                 array_push($this->result, $this->myconn->error);
+                 return false; // No rows where returned
+             }
+           }else{
+               return false; // Table does not exist
+         }
+    }
+    public function selectMax($table, $field) {
+        $q = 'SELECT MAX('.$field.') as max FROM '.$table;
+        // echo $table;
+        $this->myQuery = $q; // Pass back the SQL
+		// Check to see if the table exists
+        if($this->tableExists($table)){
+        	// The table exists, run the query
+        	$query = $this->myconn->query($q);    
+			if($query){
+				// If the query returns >= 1 assign the number of rows to numResults
+				$this->numResults = $query->num_rows;
+				// Loop through the query results by the number of rows returned
+				for($i = 0; $i < $this->numResults; $i++){
+					$r = $query->fetch_array();
+                	$key = array_keys($r);
+                	for($x = 0; $x < count($key); $x++){
+                		// Sanitizes keys so only alphavalues are allowed
+                    	if(!is_int($key[$x])){
+                    		if($query->num_rows >= 1){
+                    			$this->result[$i][$key[$x]] = $r[$key[$x]];
+							}else{
+								$this->result[$i][$key[$x]] = null;
+							}
+						}
+					}
+				}
+				return true; // Query was successful
+			}else{
+				array_push($this->result, $this->myconn->error);
+				return false; // No rows where returned
+			}
+      	}else{
+      		return false; // Table does not exist
+    	}
+    }
+
 	// Function to insert into the database
     public function insert($table, $params=array()){
     	// Check to see if the table exists

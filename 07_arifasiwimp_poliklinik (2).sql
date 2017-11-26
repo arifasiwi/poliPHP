@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 07:35 AM
+-- Generation Time: Nov 25, 2017 at 06:58 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -23,6 +23,38 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `antrian`
+--
+
+CREATE TABLE `antrian` (
+  `id` int(11) NOT NULL,
+  `tgl` date NOT NULL,
+  `nomor` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `antrian`
+--
+
+INSERT INTO `antrian` (`id`, `tgl`, `nomor`) VALUES
+(1, '2017-11-19', '90'),
+(2, '2017-11-19', '20'),
+(3, '2017-11-19', '78'),
+(4, '2017-11-18', '80'),
+(5, '0000-00-00', '91'),
+(6, '0000-00-00', '91'),
+(7, '2017-11-19', '91'),
+(8, '2017-11-19', '92'),
+(9, '2017-11-21', '1'),
+(10, '2017-11-21', '2'),
+(11, '2017-11-21', '3'),
+(12, '2017-11-21', '4'),
+(13, '2017-11-21', '5'),
+(14, '2017-11-21', '6');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `biaya`
 --
 
@@ -38,7 +70,12 @@ CREATE TABLE `biaya` (
 --
 
 INSERT INTO `biaya` (`id`, `nama`, `tarif`, `pendaftaran_id`) VALUES
-(1, 'Dea', '500000', 1);
+(1, 'Dea', '500000', 1),
+(2, 'adfjh', '468', 1),
+(3, 'adfjh', '468', 1),
+(4, 'adfjh', '468', 1),
+(5, 'adfjh', '468', 1),
+(6, 'jbfkj', '7864', 1);
 
 -- --------------------------------------------------------
 
@@ -61,7 +98,8 @@ CREATE TABLE `dokter` (
 --
 
 INSERT INTO `dokter` (`id`, `kode`, `nama`, `alamat`, `telp`, `jk`, `poli_id`) VALUES
-(1, '1', 'sdhfjds', 'dhfbhlj', '234', 'L', 1);
+(6, '898', 'fsdkjfskj', 'sdkjfsjk', 'sfskj', 'L', 0),
+(8, 'Dok123', 'Khamilatul Zahro', 'KedungPedaringan', '081274928363', 'P', 10);
 
 -- --------------------------------------------------------
 
@@ -73,8 +111,8 @@ CREATE TABLE `jadwal` (
   `id` int(11) NOT NULL,
   `kode` varchar(255) NOT NULL,
   `hari` varchar(255) NOT NULL,
-  `jam_mulai` datetime NOT NULL,
-  `jam_selesai` datetime NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_selesai` time NOT NULL,
   `jk` varchar(255) NOT NULL,
   `dokter_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -89,9 +127,16 @@ CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
+  `typeuser` varchar(255) NOT NULL,
   `pegawai_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id`, `username`, `password`, `typeuser`, `pegawai_id`) VALUES
+(1, 'arifasiwi', 'arifasiwi', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -108,6 +153,13 @@ CREATE TABLE `obat` (
   `harga` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `obat`
+--
+
+INSERT INTO `obat` (`id`, `kode`, `nama`, `merk`, `satuan`, `harga`) VALUES
+(1, '1', 'hkvjg', 'vkg', '2', '23');
+
 -- --------------------------------------------------------
 
 --
@@ -120,7 +172,7 @@ CREATE TABLE `pasien` (
   `alamat` varchar(255) NOT NULL,
   `telp` varchar(255) NOT NULL,
   `tgl_lahir` date NOT NULL,
-  `jk` varchar(255) NOT NULL,
+  `jk` enum('L','P') NOT NULL,
   `tgl_reg` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -129,8 +181,8 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id`, `nama`, `alamat`, `telp`, `tgl_lahir`, `jk`, `tgl_reg`) VALUES
-(1, 'Emeraldine', 'MboroCity', '08587392749', '2017-10-01', 'P', '2017-10-05'),
-(3, 'dhg', 'dsg', '548', '2017-09-25', 'L', '0000-00-00');
+(25, 'Arifasiwi Milanda Putri', 'KedungPedaringan', '081274928363', '2000-01-31', 'P', '2017-01-31'),
+(26, 'Khamilatul ', 'KedungPedaringan', '081232455103', '0000-00-00', 'L', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -140,7 +192,7 @@ INSERT INTO `pasien` (`id`, `nama`, `alamat`, `telp`, `tgl_lahir`, `jk`, `tgl_re
 
 CREATE TABLE `pegawai` (
   `id` int(11) NOT NULL,
-  `nip` int(11) DEFAULT NULL,
+  `nip` varchar(255) DEFAULT NULL,
   `nama` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `telp` varchar(255) NOT NULL,
@@ -153,8 +205,9 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id`, `nip`, `nama`, `alamat`, `telp`, `tgl_lahir`, `jk`) VALUES
-(1, 123, 'Khamilatul Zahro', 'KedungPedaringan', '08127492836', '2017-10-01', 'P'),
-(2, 65, 'vkhfsg', 'sdhgfjsh', '38246', '2017-09-25', 'L');
+(1, '9', 'Khamilatul ', 'KedungPedaringan', '08127492836', '2017-10-01', 'P'),
+(2, '65', 'mila khamila', 'sdhgfjsh', '38246', '2017-09-25', 'P'),
+(6, 'K001', 'Ayu Azmi Shafarini', 'KedungPedaringan', '081274928367', '2000-01-29', 'L');
 
 -- --------------------------------------------------------
 
@@ -186,11 +239,20 @@ CREATE TABLE `pendaftaran` (
   `nomor` int(11) NOT NULL,
   `tgl` date NOT NULL,
   `antrian` varchar(255) NOT NULL,
-  `pegawai_id` int(11) NOT NULL,
-  `pasien_id` int(11) NOT NULL,
-  `jadwal_id` int(11) NOT NULL,
-  `biaya_id` int(11) NOT NULL
+  `pasien_nama` varchar(255) NOT NULL,
+  `pegawai_nama` varchar(255) NOT NULL,
+  `biaya_tarif` varchar(255) NOT NULL,
+  `poli_id` varchar(255) NOT NULL,
+  `dokter_id` varchar(255) NOT NULL,
+  `jadwal_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pendaftaran`
+--
+
+INSERT INTO `pendaftaran` (`id`, `nomor`, `tgl`, `antrian`, `pasien_nama`, `pegawai_nama`, `biaya_tarif`, `poli_id`, `dokter_id`, `jadwal_id`) VALUES
+(16, 9, '2017-11-15', '233', 'arifasiwi', 'milanda', '25000', 'tht', 'jono', 'senin');
 
 -- --------------------------------------------------------
 
@@ -209,15 +271,7 @@ CREATE TABLE `poli` (
 --
 
 INSERT INTO `poli` (`id`, `kode`, `nama`) VALUES
-(1, 'PLG', 'Poli Gigi'),
-(2, '12345', 'Jantung'),
-(3, '12', 'syaraf'),
-(4, '000', 'sdfdksjj'),
-(5, '789789sdf', 'djksdhf'),
-(6, '678', 'guyughu'),
-(7, '678dfds', 'dsdtfdskfjdso'),
-(8, '65', 'ahgdh'),
-(9, '68', 'hclkv');
+(10, 'P001', 'Poli Syaraf');
 
 -- --------------------------------------------------------
 
@@ -237,6 +291,12 @@ CREATE TABLE `resep` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `antrian`
+--
+ALTER TABLE `antrian`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `biaya`
@@ -295,10 +355,10 @@ ALTER TABLE `pemeriksaan`
 --
 ALTER TABLE `pendaftaran`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pegawai_id` (`pegawai_id`),
-  ADD KEY `pasien_id` (`pasien_id`),
-  ADD KEY `jadwal_id` (`jadwal_id`),
-  ADD KEY `biaya_id` (`biaya_id`);
+  ADD KEY `pegawai_id` (`pasien_nama`),
+  ADD KEY `pasien_id` (`pegawai_nama`),
+  ADD KEY `jadwal_id` (`biaya_tarif`),
+  ADD KEY `biaya_id` (`poli_id`);
 
 --
 -- Indexes for table `poli`
@@ -318,15 +378,20 @@ ALTER TABLE `resep`
 --
 
 --
+-- AUTO_INCREMENT for table `antrian`
+--
+ALTER TABLE `antrian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
 -- AUTO_INCREMENT for table `biaya`
 --
 ALTER TABLE `biaya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `jadwal`
 --
@@ -336,22 +401,22 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pemeriksaan`
 --
@@ -361,12 +426,12 @@ ALTER TABLE `pemeriksaan`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `poli`
 --
 ALTER TABLE `poli`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `resep`
 --
@@ -375,12 +440,6 @@ ALTER TABLE `resep`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `dokter`
---
-ALTER TABLE `dokter`
-  ADD CONSTRAINT `dokter_ibfk_1` FOREIGN KEY (`poli_id`) REFERENCES `poli` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `jadwal`
@@ -399,15 +458,6 @@ ALTER TABLE `login`
 --
 ALTER TABLE `pemeriksaan`
   ADD CONSTRAINT `pemeriksaan_ibfk_1` FOREIGN KEY (`pendaftaran_id`) REFERENCES `pendaftaran` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `pendaftaran`
---
-ALTER TABLE `pendaftaran`
-  ADD CONSTRAINT `pendaftaran_ibfk_1` FOREIGN KEY (`pegawai_id`) REFERENCES `pegawai` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `pendaftaran_ibfk_2` FOREIGN KEY (`pasien_id`) REFERENCES `pasien` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `pendaftaran_ibfk_3` FOREIGN KEY (`jadwal_id`) REFERENCES `jadwal` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `pendaftaran_ibfk_4` FOREIGN KEY (`biaya_id`) REFERENCES `biaya` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `resep`

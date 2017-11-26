@@ -9,31 +9,40 @@
       <thead>
           <tr>
 		      <th>No Resep</th>
-		      <th>Dosis</th>
-		      <th>Jumlah</th>
-		      <th>Id Obat</th>
-		      <th>Id Pemeriksaan</th>
+		      <th>No. Pemeriksaan</th>
+		      <th>Tindakan</th>
+		      <th>Status</th>
 		      <th>Aksi</th>
 	      </tr>
           <?php
     require_once("database.php");
     $db=new Database();
-    $db->select('resep', 'id, nomor, dosis, jumlah, obat_id, pemeriksaan_id');
+    $db->select('resep', 
+    'resep.id, 
+    resep.nomor, 
+    pemeriksaan.nomor as pemeriksaan, 
+    pemeriksaan.tindakan as tindakan, 
+    resep.status',
+    'pemeriksaan ON resep.pemeriksaan_id = pemeriksaan.id'
+);
     $res=$db->getResult();
-      if(count($res) == 0){
-          echo "<b>Tidak ada data yang tersedia</b>";
-      }else{
-          foreach ($res as &$r){?>
+    if(count($res) == 0){ ?>
+            <tr>
+                <td colspan="8">Data tidak tersedia.</td>
+            </tr>
+            <?php }else{
+                // print_r($res);
+            foreach ($res as &$r){?>
           <tr>
               <td><?php echo $r['nomor'] ?></td>
-              <td><?php echo $r['dosis'] ?></td>
-              <td><?php echo $r['jumlah'] ?></td>
-              <td><?php echo $r['obat_id'] ?></td>
-              <td><?php echo $r['pemeriksaan_id'] ?></td>
+              <td><?php echo $r['pemeriksaan'] ?></td>
+              <td><?php echo $r['tindakan'] ?></td>
+              <td><?php echo ($r['status'] == true  ? 'Sudah ditebus' : 'Belum ditebus')  ?></td>
               <td>
                   <div class="small button-group">
-                      <a href="?module=resep-show?id=<?php echo $r['id']; ?>" class=" button">View</a>
-                      <a href="?module=resep-edit?id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
+                      <a href="?module=resep-obat&id=<?php echo $r['id']; ?>" class=" button">Resep Obat</a>
+                      <a href="?module=resep-show&id=<?php echo $r['id']; ?>" class=" button">View</a>
+                      <a href="?module=resep-edit&id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
                       <a href="?module=resep-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
                   </div>
               </td>

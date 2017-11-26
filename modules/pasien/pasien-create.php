@@ -1,3 +1,6 @@
+<?php ob_start(); 
+require_once("database.php");
+?>
 <nav aria-label="You are here:" role="navigation">
 <ul class="breadcrumbs">
   <li>
@@ -7,14 +10,21 @@
 </nav>
 <form action="" method="post">
 
-<!-- field no -->
-<div class="grid-x grid-padding-x">
-  <div class="small-3 cell">
-    <label for="id" class="text-right middle">No</label>
-  </div>
-  <div class="small-6 cell">
-    <input type="text" name="id" placeholder="id" required>
-  </div>
+ <!-- field kode -->
+ <div class="grid-x grid-padding-x">
+<div class="small-3 cell">
+  <label for="kode" class="text-right middle">Kode</label>
+</div>
+<div class="small-6 cell">
+<?php
+  $db = new Database();
+  $db->selectMax('pasien','id');
+  $res = $db->getResult();
+  $kode = $res[0]['max'] < 1 ? $res[0]['max']+1  : $res[0]['max']+1;
+  $value = 'PAS'.$kode;
+  echo "<input type='text' name='kode' value='$value' placeholder='Kode Pasien' readonly>";
+?>
+</div>
 </div>
 
 <!-- field nama -->
@@ -89,46 +99,29 @@
 </form>
 
 <?php 
-require_once("database.php");
 
 // check action submit
 if(isset($_POST['submit'])){
-$id = $_POST['id'];
+$kode = $_POST['kode'];
 $nama = $_POST['nama'];
 $alamat = $_POST['alamat'];
 $telp = $_POST['telp'];
 $tgl_lahir = $_POST['tgl_lahir'];
 $jk = $_POST['jk'];
 $tgl_reg = $_POST['tgl_reg'];
-// validation empty
-if(empty($id) || empty($nama) || empty($alamat) || empty($telp) || empty($tgl_lahir) || empty($jk) || empty($tgl_reg)){
-  if(empty($id)){
-    echo "id harus diisi";
-  }
-  if(empty($nama)){
-    echo "Nama harus diisi";
-  }
-  if(empty($alamat)){
-    echo "alamat harus diisi";
-  }
-  if(empty($telp)){
-    echo "telp harus diisi";
-  }
-  if(empty($tgl_lahir)){
-    echo "tgl_lahir harus diisi";
-  }
-  if(empty($jk)){
-    echo "jk harus diisi";
-  }
-  if(empty($tgl_reg)){
-    echo "tglreg harus diisi";
-  }
-} else {
+
   $db=new Database();
-  $db->insert('pasien',array('id'=>$id, 'nama'=>$nama, 'alamat'=>$alamat, 'telp'=>$telp, 'tgl_lahir'=>$tgl_lahir, 'jk'=>$jk));
+  $db->insert('pasien',array(
+    'kode'=>$kode,
+    'nama'=>$nama, 
+    'alamat'=>$alamat, 
+    'telp'=>$telp, 
+    'tgl_lahir'=>$tgl_lahir, 
+    'jk'=>$jk, 
+    'tgl_reg'=>$tgl_reg));
   $res=$db->getResult();
-  // redirect to list
-  header('Location: /poliklinik/index.php?module=pasien');
-}
+   // redirect to list
+  //  print_r($res);
+   exit(header('Location: /poliklinik/index.php?module=pasien'));
 }
 ?>

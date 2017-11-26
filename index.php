@@ -1,9 +1,18 @@
+<?php
+// // mengaktifkan session
+// session_start();
+
+// // cek apakah user telah login, jika belum login maka di alihkan ke halaman login
+// if($_SESSION['status'] !="login"){
+//   header('Location: /poliklinik/login.php');
+// }
+?> 
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
+    <title>Welcome in Poliklinik Sehat</title>
     <link rel="stylesheet" href="css/foundation.css">
   </head>
   <body>
@@ -16,11 +25,11 @@
     
     <div class="grid-container fluid">
       <div class="grid-x grid-margin-x" id="content">
-        <div class="medium-8 cell">
-          <?php include 'content.php'; ?>
-        </div>
-        <div class="medium-4 cell">
+        <div class="medium-2 cell card">
           <?php include 'includes/sidebar.php'; ?>
+        </div>
+        <div class="medium-10 cell">
+          <?php include 'content.php'; ?>
         </div>
       </div>
     </div>

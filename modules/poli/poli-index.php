@@ -28,8 +28,8 @@
               <td><?php echo $r['nama'] ?></td>
               <td>
                   <div class="small button-group">
-                      <a href="?module=poli-show?id=<?php echo $r['id']; ?>" class=" button">View</a>
-                      <a href="?module=poli-edit?id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
+                      <a href="?module=poli-show&id=<?php echo $r['id']; ?>" class=" button">View</a>
+                      <a href="?module=poli-edit&id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
                       <a href="?module=poli-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
                   </div>
               </td>

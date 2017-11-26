@@ -1,5 +1,5 @@
 <div class="callout large primary">
       <div class="row column text-center">
-        <h1>POLIKLINIK SEHAT</h1>
+        <h3>Poliklinik Sehat </h3>
       </div>
     </div>

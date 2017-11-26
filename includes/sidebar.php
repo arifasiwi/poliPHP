@@ -9,10 +9,10 @@
               <li><a href="?module=dokter" aria-label="Dokter">Dokter</a></li>
               <li><a href="?module=jadwal" aria-label="Jadwal">Jadwal</a></li>
               <li><a href="?module=biaya" aria-label="Biaya">Biaya</a></li>
-              <li><a href="?module=pendaftaran" aria-label="Pendaftran">Pendaftaran</a></li>
-              <li><a href="?module=pemeriksaan" aria-label="Pemeriksaan">Pemeriksaan</a></li>
+              <!-- <li><a href="?module=pendaftaran" aria-label="Pendaftran">Pendaftaran</a></li> -->
+              <!-- <li><a href="?module=pemeriksaan" aria-label="Pemeriksaan">Pemeriksaan</a></li> -->
               <li><a href="?module=obat" aria-label="Obat">Obat</a></li>
-              <li><a href="?module=resep" aria-label="Resep">Resep</a></li>
+              <li><a href="?module=resep" aria-label="Resep">Resep</a></li> 
           </ul>
         </div>
       </div>

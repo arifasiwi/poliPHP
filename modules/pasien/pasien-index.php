@@ -20,14 +20,14 @@
           <?php
     require_once("database.php");
     $db=new Database();
-    $db->select('pasien', 'id, nama, alamat, telp, tgl_lahir, jk, tgl_reg ');
+    $db->select('pasien', 'kode, nama, alamat, telp, tgl_lahir, jk, tgl_reg ');
     $res=$db->getResult();
       if(count($res) == 0){
           echo "<b>Tidak ada data yang tersedia</b>";
       }else{
           foreach ($res as &$r){?>
           <tr>
-              <td><?php echo $r['id'] ?></td>
+              <td><?php echo $r['kode'] ?></td>
               <td><?php echo $r['nama'] ?></td>
               <td><?php echo $r['alamat'] ?></td>
               <td><?php echo $r['telp'] ?></td>
@@ -37,8 +37,8 @@
 
               <td>
                   <div class="small button-group">
-                      <a href="?module=pasien-show?id=<?php echo $r['id']; ?>" class=" button">View</a>
-                      <a href="?module=pasien-edit?id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
+                      <a href="?module=pasien-show&id=<?php echo $r['id']; ?>" class=" button">View</a>
+                      <a href="?module=pasien-edit&id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
                       <a href="?module=pasien-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
                   </div>
               </td>

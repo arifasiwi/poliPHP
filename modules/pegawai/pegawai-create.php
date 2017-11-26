@@ -1,4 +1,4 @@
-
+<?php ob_start(); ?>
 <nav aria-label="You are here:" role="navigation">
 <ul class="breadcrumbs">
   <li>
@@ -91,32 +91,18 @@ $alamat = $_POST['alamat'];
 $telp = $_POST['telp'];
 $tgl_lahir = $_POST['tgl_lahir'];
 $jk = $_POST['jk'];
-// validation empty
-if(empty($nip) || empty($nama) || empty($alamat) || empty($telp) || empty($tgl_lahir) || empty($jk)){
-  if(empty($nip)){
-    echo "nip harus diisi";
-  }
-  if(empty($nama)){
-    echo "Nama harus diisi";
-  }
-  if(empty($alamat)){
-    echo "alamat harus diisi";
-  }
-  if(empty($telp)){
-    echo "telp harus diisi";
-  }
-  if(empty($tgl_lahir)){
-    echo "tgl_lahir harus diisi";
-  }
-  if(empty($jk)){
-    echo "jk harus diisi";
-  }
-} else {
+
   $db=new Database();
-  $db->insert('pegawai',array('nip'=>$nip, 'nama'=>$nama, 'alamat'=>$alamat, 'telp'=>$telp, 'tgl_lahir'=>$tgl_lahir, 'jk'=>$jk));
+  $db->insert('pegawai',array(
+    'nip'=>$nip, 
+    'nama'=>$nama, 
+    'alamat'=>$alamat, 
+    'telp'=>$telp, 
+    'tgl_lahir'=>$tgl_lahir, 
+    'jk'=>$jk));
   $res=$db->getResult();
   // redirect to list
   header('Location: /poliklinik/index.php?module=pegawai');
 }
-}
+
 ?>

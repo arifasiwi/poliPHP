@@ -1,10 +1,22 @@
 <?php
-$module=$_GET['module'];
+
+// cek apakah module sudah ada apa belum diparameter
+$module = empty($_GET['module']) ? 'home' : $_GET['module'];
 
 switch($module) {
     // Module Home
     case 'home':
     include 'home.php';
+    break;
+    
+    // Module Login
+    case 'login':
+    include 'login.php';
+    break;
+
+    // Module LogOut
+    case 'logout':
+    include 'logout.php';
     break;
 
     // Module Poli
@@ -176,7 +188,10 @@ switch($module) {
         include 'modules/resep/resep-delete.php';
     break;
     case 'resep-show':
-        include 'modules/resep/resep-edit.php';
+        include 'modules/resep/resep-show.php';
+    break;
+    case 'resep-obat':
+    include 'modules/resep/resep-obat.php';
     break;  
   
 

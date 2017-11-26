@@ -1,3 +1,7 @@
+<?php 
+ob_start();
+require_once("database.php");
+?>
 <nav aria-label="You are here:" role="navigation">
 <ul class="breadcrumbs">
   <li>
@@ -58,33 +62,41 @@
     </div>
 </div>
 
-<!-- field dokter id -->
+<!-- field dokter -->
 <div class="grid-x grid-padding-x">
-  <div class="small-3 cell">
-    <label for="dokter_id" class="text-right middle">dokter_id</label>
-  </div>
-  <div class="small-6 cell">
-    <input type="text" name="dokter_id" placeholder="dokter_id" required>
-  </div>
+<div class="small-3 cell">
+  <label for="dokter_id" class="text-right middle">dokter</label>
+</div>
+<div class="small-6 cell">
+<select name="dokter_id">
+<option value = ""> Pilih dokter </option>
+  <?php
+    $db = new Database();
+    $db->select('dokter','id,nama');
+    $res = $db->getResult();
+    foreach ($res as &$r){
+      echo "<option value=$r[id]>$r[nama]</option>";
+    }    
+  ?>
+   </select>
+</div>
 </div>
 
-<!-- Aksi -->
-<div class="grid-x grid-padding-x">
-  <div class="small-3 cell">
-    <label for="nama" class="text-right middle"></label>
-  </div>
-  <div class="small-6 cell">
-      <div class="small button-group">
-    <button class="button" type="submit" name="submit">Simpan</button>
-    <button class="button" type="reset">Reset</button>
-    <a class="button" href='javascript:self.history.back();'>Kembali</a>
-  </div>
-  </div>
+ <!-- Aksi -->
+ <div class="grid-x grid-padding-x">
+ <div class="small-3 cell">
+   <label for="nama" class="text-right middle"></label>
+ </div>
+ <div class="small-6 cell">
+ <div class="small button-group">
+<button class="button" type="submit" name="submit">Simpan</button>
+<a class="button" href='javascript:self.history.back();'>Kembali</a>
+</div>
+ </div>
 </div>
 </form>
 
 <?php 
-require_once("database.php");
 
 // check action submit
 if(isset($_POST['submit'])){
