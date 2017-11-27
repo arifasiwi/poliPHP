@@ -39,7 +39,6 @@ if(count($res) == 0){ ?>
     </tbody>
   </table>
 <?php }else{
-  print_r($res);
   foreach ($res as &$r){ 
 ?>
 <table id="print-area">
@@ -72,6 +71,46 @@ if(count($res) == 0){ ?>
 </div>
 <?php }}?>
 
+<table>
+  <thead>
+    <tr>
+	  <th>No Resep</th>
+	  <th>Obat</th>
+	  <th>Jumlah</th>
+	  <th>Harga</th>
+	  <th>Total</th>
+	  <th>Aksi</th>
+	</thead>
+  <tbody>
+    <tr>
+      <form action="" method="post">
+        <td><input type="text" name="resep_id" placeholder="No Resep" required></td>
+        <td><input type="text" name="obat_id" placeholder="Obat" required></td>
+        <td><input type="text" name="jumlah" placeholder="Jumlah" required></td>
+        <td><input type="text" name="harga" placeholder="Harga" required></td>
+        <td><input type="text" name="total" placeholder="Total" required></td>
+        <td><button type="submit" class="button">Submit</button></td>
+      </form>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <div class="small button-group">
+            <a href="?module=poli-obat-edit&id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
+            <a href="?module=poli-obat-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+        <td colspan="4">Jumlah Total</td>
+        <td>{total}</td>
+        <td>Aksi</td>
+    </tr>
+  </tbody>
 <style>
 @media print {
    * { color: black; background: white; }
