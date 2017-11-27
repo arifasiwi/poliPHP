@@ -25,10 +25,18 @@
     
     <div class="grid-container fluid">
       <div class="grid-x grid-margin-x" id="content">
-        <div class="medium-2 cell card">
+        <div class="medium-2 cell card" style="
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        ">
           <?php include 'includes/sidebar.php'; ?>
         </div>
-        <div class="medium-10 cell">
+        <div class="medium-10 cell card" style="
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        ">
           <?php include 'content.php'; ?>
         </div>
       </div>
