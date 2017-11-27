@@ -83,21 +83,37 @@ if(count($res) == 0){ ?>
 	</thead>
   <tbody>
     <tr>
+    <?php
+      $db = new Database();
+      $db->select('obat','id, kode, nama, merk, harga');
+      $res = $db->getResult();
+      ?>
+      
       <form action="" method="post">
-        <td><input type="text" name="resep_id" placeholder="No Resep" required></td>
-        <td><input type="text" name="obat_id" placeholder="Obat" required></td>
+        <td><input type="text" name="resep_id" value="<?php echo $_GET['id']?>" readonly></td>
+        <td>
+          <!-- field pemeriksaan_id -->
+          <div class="grid-x grid-padding-x">
+            <select name="obat_id">
+              <option value = ""> Pilih Obat </option>
+              <?php foreach ($res as &$r){?>
+              <?php echo "<option value=$r[id]>$r[nama] - $r[merk] - $r[harga]</option>"; ?>
+              <?php }?> 
+            </select>
+          </div>
+        </td>
         <td><input type="text" name="jumlah" placeholder="Jumlah" required></td>
         <td><input type="text" name="harga" placeholder="Harga" required></td>
-        <td><input type="text" name="total" placeholder="Total" required></td>
+        <td><input type="text" name="total" placeholder="Total" ></td>
         <td><button type="submit" class="button">Submit</button></td>
       </form>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>No Resep</td>
+      <td>Obat Batuk</td>
+      <td>1</td>
+      <td>12000</td>
+      <td>30000</td>
       <td>
         <div class="small button-group">
             <a href="?module=poli-obat-edit&id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>

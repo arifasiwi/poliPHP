@@ -32,7 +32,7 @@
         ">
           <?php include 'includes/sidebar.php'; ?>
         </div>
-        <div class="medium-10 cell card" style="
+        <div class="medium-10 cell" style="
             padding-left: 20px;
             padding-top: 20px;
             padding-bottom: 20px;
