@@ -5,6 +5,8 @@
   </ul>
 </nav>
 <a href="?module=biaya-create" class="small button">Create</a>
+<a href="/poliklinik/export-csv.php?table=biaya" class="small button">Export to CSV</a>
+	
   <table>
       <thead>
           <tr>

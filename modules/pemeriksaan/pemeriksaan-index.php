@@ -5,6 +5,8 @@
 </ul>
 </nav>
 <a href="?module=pemeriksaan-create" class="small button">Create</a>
+<a href="/poliklinik/export-csv.php?table=pemerksaan" class="small button">Export to CSV</a>
+	
 <table>
     <thead>
         <tr>

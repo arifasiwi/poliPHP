@@ -5,6 +5,8 @@
   </ul>
 </nav>
 <a href="?module=dokter-create" class="small button">Create</a>
+<a href="/poliklinik/export-csv.php?table=dokter" class="small button">Export to CSV</a>
+	
   <table>
       <thead>
           <tr>

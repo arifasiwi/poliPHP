@@ -5,6 +5,8 @@
   </ul>
 </nav>
     <a href="?module=pegawai-create" class="small button">Create</a>
+    <a href="/poliklinik/export-csv.php?table=pegawai" class="small button">Export to CSV</a>
+	
 	
 <table>
     <thead>

@@ -35,6 +35,9 @@ switch($module) {
     case 'poli-show':
         include 'modules/poli/poli-edit.php';
     break;
+    case 'poli-eport':
+    include 'modules/poli/poli-export.php';
+break;
 
     // Module Pasien
     case 'pasien':
