@@ -6,7 +6,17 @@
 </nav>
     <a href="?module=poli-create" class="small button">Create</a>
     <a href="/poliklinik/export-csv.php?table=poli" class="small button">Export to CSV</a>
-	
+	<?php
+    echo "<script>
+            function cari() {
+              window.location.href=\"?cari=\"+document.getElementById('cari').value;
+            }
+          </script>";
+    ?>
+    <td colspan="5">Urut Berdasarkan <a href="?sort=asc" id="sort">Asc</a> <a href="?sort=desc" id="sort">Desc</a></td>
+    <td>
+       <input type="text" id="cari"><button id="search" onclick="cari()">cari</button>
+    </td>
 <table>
     <thead>
         <tr>
@@ -34,6 +44,8 @@
                       <a href="?module=poli-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
                   </div>
               </td>
+              
+              
           </tr>
 <?php
                 }

@@ -65,6 +65,8 @@ if(count($res) == 0){ ?>
     </tr>
   </tbody>
 </table>
+
+<a href="?module=trx-resep-obat&resep_id=<?php echo $_GET['id'];?>" class="small button">ADD</a>    
 <a class="button" href="javascript:printDiv('print-area');" >Print</a>
 <a href="?module=resep-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
 <a class="button" href='javascript:self.history.back();'>Kembali</a>
@@ -82,50 +84,38 @@ if(count($res) == 0){ ?>
 	  <th>Aksi</th>
 	</thead>
   <tbody>
-    <tr>
-    <?php
-      $db = new Database();
-      $db->select('obat','id, kode, nama, merk, harga');
-      $res = $db->getResult();
-      ?>
-      
-      <form action="" method="post">
-        <td><input type="text" name="resep_id" value="<?php echo $_GET['id']?>" readonly></td>
-        <td>
-          <!-- field pemeriksaan_id -->
-          <div class="grid-x grid-padding-x">
-            <select name="obat_id">
-              <option value = ""> Pilih Obat </option>
-              <?php foreach ($res as &$r){?>
-              <?php echo "<option value=$r[id]>$r[nama] - $r[merk] - $r[harga]</option>"; ?>
-              <?php }?> 
-            </select>
-          </div>
-        </td>
-        <td><input type="text" name="jumlah" placeholder="Jumlah" required></td>
-        <td><input type="text" name="harga" placeholder="Harga" required></td>
-        <td><input type="text" name="total" placeholder="Total" ></td>
-        <td><button type="submit" class="button">Submit</button></td>
-      </form>
-    </tr>
-    <tr>
-      <td>No Resep</td>
-      <td>Obat Batuk</td>
-      <td>1</td>
-      <td>12000</td>
-      <td>30000</td>
-      <td>
-        <div class="small button-group">
-            <a href="?module=poli-obat-edit&id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
-            <a href="?module=poli-obat-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-        <td colspan="4">Jumlah Total</td>
-        <td>{total}</td>
-        <td>Aksi</td>
-    </tr>
+  <?php
+    require_once("database.php");
+    $db=new Database();
+    $db->select('trx_resep', 
+    'trx_resep.id, 
+    trx_resep.jumlah, 
+    trx_resep.harga, 
+    resep.nomor as nomor, 
+    obat.nama as nama, 
+    trx_resep.total',
+    'resep ON trx_resep.resep_id = resep.id',
+    'obat ON trx_resep.obat_id = obat.id'
+);
+    $res=$db->getResult();
+    if(count($res) == 0){ ?>
+            <tr>
+                <td colspan="8">Data tidak tersedia.</td>
+            </tr>
+            <?php }else{
+                //print_r($res);
+            foreach ($res as &$r){?>
+          <tr>
+          <td><?php echo $r['nomor'] ?></td>
+          <td><?php echo $r['nama'] ?></td>
+          <td><?php echo $r['jumlah'] ?></td>
+          <td><?php echo $r['harga'] ?></td>
+          <td><?php echo $r['total'] ?></td>
+      </tr>
+<?php       
+                }
+            }
+            ?>
   </tbody>
 <style>
 @media print {
@@ -147,3 +137,25 @@ if(count($res) == 0){ ?>
     window.frames["print_frame"].window.print();
 }
 </script>
+<?php 
+
+// check action submit
+if(isset($_POST['submit'])){
+$resep_id = $_POST['resep_id'];
+$obat_id = $_POST['obat_id'];
+$jumlah = $_POST['jumlah'];
+$harga = $_POST['harga'];
+$total = $_POST['total'];
+
+echo $_POST;
+
+// validation empty
+  $db=new Database();
+  $db->insert('trx_resep',array('resep_id'=>$resep_id, 'obat_id'=>$obat_id, 'jumlah'=>$jumlah,  'harga'=>$harga, 'total'=>$total, ));
+  $res=$db->getResult();
+  print_r($res);
+  // redirect to list
+  // header('Location: /poliklinik/index.php?module=resep');
+}
+
+?>

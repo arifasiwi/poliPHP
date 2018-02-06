@@ -15,12 +15,13 @@
 		      <th>Merk</th>
 		      <th>Satuan</th>
               <th>Harga</th>
+              <th>Stok</th>
 		      <th>Aksi</th>
 	      </tr>
           <?php
     require_once("database.php");
     $db=new Database();
-    $db->select('obat', 'id, kode, nama, merk, satuan, harga');
+    $db->select('obat', 'id, kode, nama, merk, satuan, harga, stok');
     $res=$db->getResult();
       if(count($res) == 0){
           echo "<b>Tidak ada data yang tersedia</b>";
@@ -32,6 +33,7 @@
               <td><?php echo $r['merk'] ?></td>
               <td><?php echo $r['satuan'] ?></td>
               <td><?php echo $r['harga'] ?></td>
+              <td><?php echo $r['stok'] ?></td>
               <td>
                   <div class="small button-group">
                       <a href="?module=obat-show&id=<?php echo $r['id']; ?>" class=" button">View</a>

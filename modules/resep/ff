@@ -1,0 +1,33 @@
+<?php
+    require_once("database.php");
+    $db=new Database();
+    $db->select('trx_resep', 
+    'resep.resep_id, 
+    resep.obat_id, 
+    resep.jumlah, 
+    resep.harga, 
+    resep.total'
+);
+    $res=$db->getResult();
+    if(count($res) == 0){ ?>
+            <tr>
+                <td colspan="8">Data tidak tersedia.</td>
+            </tr>
+            <?php }else{
+                // print_r($res);
+            foreach ($res as &$r){?>
+          <tr>
+              <td><?php echo $r['resep_id'] ?></td>
+              <td><?php echo $r['obat_id'] ?></td>
+              <td><?php echo $r['jumlah'] ?></td>
+              <td><?php echo $r['harga'] ?></td>
+              <td><?php echo $r['total'] ?></td>
+              <td>
+                  <div class="small button-group">
+                      <a href="?module=resep-obat&id=<?php echo $r['id']; ?>" class=" button">Resep Obat</a>
+                      <a href="?module=resep-edit&id=<?php echo $r['id']; ?>" class="secondary button">Edit</a>
+                      <a href="?module=resep-delete&id=<?php echo $r['id']; ?>"onClick='return confirm("Apakah yakin menghapus?")' class="alert button">Delete</a>
+                  </div>
+              </td>
+          </tr>
+<?php       

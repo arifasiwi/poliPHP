@@ -55,6 +55,16 @@
   </div>
 </div>
 
+<!-- field stok -->
+<div class="grid-x grid-padding-x">
+  <div class="small-3 cell">
+    <label for="stok" class="text-right middle">stok</label>
+  </div>
+  <div class="small-6 cell">
+    <input type="text" name="stok" placeholder="stok" required>
+  </div>
+</div>
+
 <!-- Aksi -->
 <div class="grid-x grid-padding-x">
   <div class="small-3 cell">
@@ -80,10 +90,11 @@ $nama = $_POST['nama'];
 $merk = $_POST['merk'];
 $satuan = $_POST['satuan'];
 $harga = $_POST['harga'];
+$stok = $_POST['stok'];
 
 // validation empty
   $db=new Database();
-  $db->insert('obat',array('kode'=>$kode, 'nama'=>$nama, 'merk'=>$merk, 'satuan'=>$satuan, 'harga'=>$harga));
+  $db->insert('obat',array('kode'=>$kode, 'nama'=>$nama, 'merk'=>$merk, 'satuan'=>$satuan, 'harga'=>$harga, 'stok'=>$stok));
   $res=$db->getResult();
   // redirect to list
   header('Location: /poliklinik/index.php?module=obat');

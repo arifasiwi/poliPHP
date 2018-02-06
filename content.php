@@ -196,6 +196,9 @@ break;
     case 'resep-obat':
     include 'modules/resep/resep-obat.php';
     break;  
+    case 'trx-resep-obat':
+    include 'modules/resep/trx-resep-obat.php';
+    break;  
   
 
     // Jika module tidak ditemukan maka di redirect ke home 
